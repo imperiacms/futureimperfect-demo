@@ -26,13 +26,13 @@
     <h1><a href="/index.html">Future Imperfect</a></h1>
     <nav class="links">
         <ul>
-            <!--__iACTIVE:AYaCBKmhvGFX2LWPwqhLg-->
+            <!--__iACTIVE:95LZR9O3idPNRwP7b57fnA-->
     <li><a href="/reisen/index.html">Reisen</a></li>
 
     <li><a href="/politik/index.html">Politik</a></li>
 
     <li><a href="/technik/index.html">Technik</a></li>
-<!--/__iACTIVE:AYaCBKmhvGFX2LWPwqhLg-->
+<!--/__iACTIVE:95LZR9O3idPNRwP7b57fnA-->
         </ul>
     </nav>
     <nav class="main">
@@ -107,9 +107,7 @@
 		<!-- Post -->
 		<!-- SiteActive zum Laden der Artikel -->
 
-		<!--__iACTIVE:D7aPA4oMNKvJJ7jt29FFHA-->$VAR1 = undef;
-$VAR1 = undef;
-
+		<!--__iACTIVE:yk3ceQrTehOLirTP1W8MZQ-->
 		<article class="post">
 			<header>
 				<div class="title">
@@ -143,9 +141,9 @@ $VAR1 = undef;
 					<li><a href="/technik/tablet/000032.html" class="button large">Continue Reading</a></li>
 				</ul>
 				<ul class="stats">
-					<li><a href="#" class="icon">Technik</a></li>
-<!--					<li><a href="#" class="icon fa-heart">0</a></li>-->
-<!--					<li><a href="#" class="icon fa-comment">128</a></li>-->
+					<li><a href="#" class="icon">Tablet</a></li>
+
+					<li><a href="#" class="icon fa-comment commentCount" data-pageid="localhost/technik/tablet/000032.html"></a></li>
 				</ul>
 			</footer>
 		</article>
@@ -183,13 +181,13 @@ $VAR1 = undef;
 					<li><a href="/technik/handy/000031.html" class="button large">Continue Reading</a></li>
 				</ul>
 				<ul class="stats">
-					<li><a href="#" class="icon">Technik</a></li>
-<!--					<li><a href="#" class="icon fa-heart">0</a></li>-->
-<!--					<li><a href="#" class="icon fa-comment">128</a></li>-->
+					<li><a href="#" class="icon">Handy</a></li>
+
+					<li><a href="#" class="icon fa-comment commentCount" data-pageid="localhost/technik/handy/000031.html"></a></li>
 				</ul>
 			</footer>
 		</article>
-		<!--/__iACTIVE:D7aPA4oMNKvJJ7jt29FFHA-->
+		<!--/__iACTIVE:yk3ceQrTehOLirTP1W8MZQ-->
 
 		<!-- Pagination -->
 		<ul class="actions pagination">
@@ -213,9 +211,9 @@ $VAR1 = undef;
 
 		<section id="sub-categories">
 			<ul>
-				<!--__iACTIVE:jBaGfkis0JT5tVBcHHjJQ-->		<li><a href="#">Handy</a></li>
+				<!--__iACTIVE:cep8vgHrxnngqsUaBQvgaw-->		<li><a href="#">Handy</a></li>
 		<li><a href="#">Tablet</a></li>
-<!--/__iACTIVE:jBaGfkis0JT5tVBcHHjJQ-->
+<!--/__iACTIVE:cep8vgHrxnngqsUaBQvgaw-->
 			</ul>
 		</section>
 
@@ -258,23 +256,24 @@ $VAR1 = undef;
                 // Options will go here
             });
 
-            getCommentCount();
+            var url = 'https://service.just-comments.com/prod/v2/counts';
+            var apiData = {
+                pageId: '',
+                apiKey: 'ca48e210-4a00-4e45-b7d8-d99e25cb7eac'
+            };
 
-            function getCommentCount() {
-                if ($('#commentCount').length) {
-                    var url = 'https://service.just-comments.com/prod/v2/counts';
-                    var apiData = {
-                        pageId: 'localhost/technik/index.html',
-                        apiKey: 'ca48e210-4a00-4e45-b7d8-d99e25cb7eac'
-                    };
+            $('.commentCount').each(function () {
+                var article = $(this);
+                apiData.pageId = article.data('pageid');
 
-                    $.getJSON(url, apiData, function (data, status) {
-                        if (status === 'success') {
-                            $('#commentCount').html(data.counts[0].count);
-                        }
-                    });
-                }
-            }
+                /*$.getJSON(url, apiData, function (data, status) {
+                    if (status === 'success') {
+                        article.html(data.counts[0].count);
+                    }
+                });*/
+
+                article.html(0);
+            });
 
             // $('.just-comments').on('click', '.jcSendCommentButton', function () {
             //     console.log('New comment submitted');
